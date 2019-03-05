@@ -11,9 +11,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import com.silvershadow.bakingapp.R;
-import com.silvershadow.bakingapp.Adapters.StepsAdapter;
 
+import com.silvershadow.bakingapp.Adapters.StepsAdapter;
+import com.silvershadow.bakingapp.R;
 import com.silvershadow.bakingapp.SupportClasses.Support;
 import com.silvershadow.bakingapp.ViewModel.RecipesViewModel;
 
