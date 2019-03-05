@@ -4,11 +4,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".UI.MainActivity">
-    <fragment
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/main_fragment_container"
-        android:name="com.silvershadow.bakingapp.UI.MainScreenFragment"
         />
 
 </LinearLayout>

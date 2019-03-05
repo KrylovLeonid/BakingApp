@@ -41,7 +41,7 @@ public class StepsAdapter extends RecyclerView.Adapter<StepsAdapter.StepsViewHol
         recipeIndex = index;
     }
 
-    public class StepsViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener  {
+    public class StepsViewHolder extends RecyclerView.ViewHolder {
 
         TextView shortDescreption;
         TextView longDescreption;
@@ -54,11 +54,6 @@ public class StepsAdapter extends RecyclerView.Adapter<StepsAdapter.StepsViewHol
             //PlayerView recipeVideo = itemView.findViewById(R.id.step_video);
 
 
-
-        }
-
-        @Override
-        public void onClick(View view) {
 
         }
     }

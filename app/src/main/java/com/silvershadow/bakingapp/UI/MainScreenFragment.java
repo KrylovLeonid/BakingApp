@@ -52,11 +52,11 @@ public class MainScreenFragment extends Fragment {
         mAdapter = new RecipesAdapter(mModel, new RecipesAdapter.ItemClickListener() {
             @Override
             public void onClick(int id) {
-                RecipeFragment recipeFragment = new RecipeFragment();
+                RecipeFragment fragment = new RecipeFragment();
                 Bundle bundle = new Bundle();
                 bundle.putInt(Support.RECIPE_ID_STRING,id);
-                recipeFragment.setArguments(bundle);
-                getFragmentManager().beginTransaction().replace(R.id.main_fragment_container,recipeFragment).commit();
+                fragment.setArguments(bundle);
+                getFragmentManager().beginTransaction().replace(R.id.main_fragment_container,fragment).addToBackStack(null).commit();
             }
         });
         RecyclerView.LayoutManager manager = new LinearLayoutManager(this.getContext());

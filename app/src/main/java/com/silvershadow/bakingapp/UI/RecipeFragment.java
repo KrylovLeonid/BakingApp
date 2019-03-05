@@ -1,12 +1,10 @@
 package com.silvershadow.bakingapp.UI;
 
-import android.arch.lifecycle.ViewModelProvider;
 import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -22,7 +20,7 @@ import com.silvershadow.bakingapp.ViewModel.RecipesViewModel;
 public class RecipeFragment extends Fragment {
     int currentRecipeId;
     RecyclerView mRecyclerView;
-    Button ingridientsButton;
+    Button ingredientsButton;
     RecipesViewModel model;
 
     public RecipeFragment(){ }
@@ -41,8 +39,8 @@ public class RecipeFragment extends Fragment {
         super.onCreateView(inflater, container, savedInstanceState);
 
         View v = inflater.inflate(R.layout.recipe_steps_fragment,container,false);
-        ingridientsButton = v.findViewById(R.id.ingredients_button);
-        ingridientsButton.setOnClickListener(new View.OnClickListener() {
+        ingredientsButton = v.findViewById(R.id.ingredients_button);
+        ingredientsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Bundle bundle = new Bundle();
