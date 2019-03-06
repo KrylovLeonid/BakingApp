@@ -36,13 +36,12 @@ public class StepsAdapter extends RecyclerView.Adapter<StepsAdapter.StepsViewHol
 
         TextView shortDescription;
         TextView longDescription;
-        PlayerView recipeVideo;
 
         public StepsViewHolder(@NonNull View itemView) {
             super(itemView);
             shortDescription = itemView.findViewById(R.id.step_sort_description_tv);
-            longDescription = itemView.findViewById(R.id.step_long_description_tv);
-            recipeVideo = itemView.findViewById(R.id.step_video);
+
+
         }
     }
 
@@ -56,23 +55,13 @@ public class StepsAdapter extends RecyclerView.Adapter<StepsAdapter.StepsViewHol
         return new StepsViewHolder(view);
     }
 
+
+
     @Override
     public void onBindViewHolder(@NonNull StepsViewHolder stepsViewHolder, int i) {
         stepsViewHolder.shortDescription.setText(mModel.getRecipes().getValue().get(recipeIndex).getSteps().get(i).getShortDescription());
-        stepsViewHolder.longDescription.setText(mModel.getRecipes().getValue().get(recipeIndex).getSteps().get(i).getDescription());
+        //stepsViewHolder.longDescription.setText(mModel.getRecipes().getValue().get(recipeIndex).getSteps().get(i).getDescription());
 
-        Uri stepVideoUri = Uri.parse(mModel.getRecipes().getValue().get(recipeIndex).getSteps().get(i).getVideoURL());
-        TrackSelector trackSelector = new DefaultTrackSelector();
-        //LoadControl loadControl = new DefaultLoadControl();
-
-        SimpleExoPlayer player = ExoPlayerFactory.newSimpleInstance(stepsViewHolder.itemView.getContext(), trackSelector);
-        stepsViewHolder.recipeVideo.setPlayer(player);
-
-        String userAgent = Util.getUserAgent(stepsViewHolder.itemView.getContext(),"BackingApp");
-        com.google.android.exoplayer2.upstream.DataSource.Factory dataSourceFactory = new DefaultDataSourceFactory(stepsViewHolder.itemView.getContext(),userAgent);
-        MediaSource mediaSource = new ExtractorMediaSource.Factory(dataSourceFactory).createMediaSource(stepVideoUri);
-        player.prepare(mediaSource);
-        player.setPlayWhenReady(true);
 
 
 
