@@ -31,13 +31,13 @@ import com.silvershadow.bakingapp.ViewModel.RecipesViewModel;
 
 public class StepFragment extends Fragment{
 
-    private GestureDetectorCompat mGestureDetector;
 
     RecipesViewModel mModel;
     PlayerView stepVideo;
     TextView description;
     int mRecipeId;
     int mStepId;
+
 
 
     public StepFragment(){}
@@ -52,21 +52,31 @@ public class StepFragment extends Fragment{
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+       // super.onCreateView(inflater, container, savedInstanceState);
+
         View view = inflater.inflate(R.layout.step_fragment, container, false);
-        stepVideo = container.findViewById(R.id.step_video);
-        description = container.findViewById(R.id.step_long_description_tv);
+        stepVideo = view.findViewById(R.id.step_video);
+        description = view.findViewById(R.id.step_long_description_tv);
         setData(mRecipeId,mStepId);
+
 
         return view;
     }
 
+    @Override
+    public void onDetach() {
+        super.onDetach();
+    }
+
     private void setData(int recipeId, int stepId){
-        setPlayer(recipeId, stepId);
         description.setText(mModel.getRecipes().getValue().get(recipeId).getSteps().get(stepId).getDescription());
+        setPlayer(recipeId, stepId);
+
     }
 
 
     private void setPlayer(int recipeId, int stepId){
+
         Uri stepVideoUri = Uri.parse(mModel.getRecipes().getValue().get(recipeId).getSteps().get(stepId).getVideoURL());
         TrackSelector trackSelector = new DefaultTrackSelector();
         SimpleExoPlayer player = ExoPlayerFactory.newSimpleInstance(getContext(), trackSelector);

@@ -36,7 +36,7 @@ public class RecipeFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        super.onCreateView(inflater, container, savedInstanceState);
+        //super.onCreateView(inflater, container, savedInstanceState);
 
         View v = inflater.inflate(R.layout.recipe_steps_fragment,container,false);
         ingredientsButton = v.findViewById(R.id.ingredients_button);
@@ -53,7 +53,16 @@ public class RecipeFragment extends Fragment {
 
 
         mRecyclerView = v.findViewById(R.id.steps_rv);
-        StepsAdapter adapter = new StepsAdapter(model, currentRecipeId);
+        StepsAdapter adapter = new StepsAdapter(model, currentRecipeId, new StepsAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(int id) {
+                ScrollFrameFragment fragment = new ScrollFrameFragment();
+                Bundle bundle = new Bundle();
+                bundle.putInt(Support.RECIPE_ID_STRING, currentRecipeId);
+                fragment.setArguments(bundle);
+                getFragmentManager().beginTransaction().replace(R.id.main_fragment_container,fragment).commit();
+            }
+        });
         RecyclerView.LayoutManager manager = new LinearLayoutManager(this.getContext());
         mRecyclerView.setAdapter(adapter);
         mRecyclerView.setLayoutManager(manager);

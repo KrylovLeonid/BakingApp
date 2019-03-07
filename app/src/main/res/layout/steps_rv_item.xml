@@ -7,9 +7,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/step_sort_description_tv"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/step_long_description_tv"/>
+
 
 </LinearLayout>
