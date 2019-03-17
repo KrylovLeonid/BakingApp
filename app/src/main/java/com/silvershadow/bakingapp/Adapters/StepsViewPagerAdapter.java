@@ -4,9 +4,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-
 import com.silvershadow.bakingapp.SupportClasses.Support;
-import com.silvershadow.bakingapp.UI.RecipeFragment;
 import com.silvershadow.bakingapp.UI.StepFragment;
 import com.silvershadow.bakingapp.ViewModel.RecipesViewModel;
 

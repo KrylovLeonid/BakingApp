@@ -3,6 +3,7 @@ package com.silvershadow.bakingapp.UI;
 import android.arch.lifecycle.ViewModelProvider;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
+import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -14,6 +15,8 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.google.android.exoplayer2.ExoPlayerFactory;
@@ -40,6 +43,7 @@ public class StepFragment extends Fragment{
 
 
 
+
     public StepFragment(){}
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -47,12 +51,12 @@ public class StepFragment extends Fragment{
         mModel = ViewModelProviders.of(getActivity()).get(RecipesViewModel.class);
         mRecipeId =  getArguments().getInt(Support.RECIPE_ID_STRING);
         mStepId = getArguments().getInt(Support.STEP_ID_STRING);
+        setRetainInstance(true);
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-       // super.onCreateView(inflater, container, savedInstanceState);
 
         View view = inflater.inflate(R.layout.step_fragment, container, false);
         stepVideo = view.findViewById(R.id.step_video);
@@ -80,11 +84,25 @@ public class StepFragment extends Fragment{
         Uri stepVideoUri = Uri.parse(mModel.getRecipes().getValue().get(recipeId).getSteps().get(stepId).getVideoURL());
         TrackSelector trackSelector = new DefaultTrackSelector();
         SimpleExoPlayer player = ExoPlayerFactory.newSimpleInstance(getContext(), trackSelector);
+        stepVideo = setHeight(stepVideo);
         stepVideo.setPlayer(player);
         String userAgent = Util.getUserAgent(getContext(),"BackingApp");
         com.google.android.exoplayer2.upstream.DataSource.Factory dataSourceFactory = new DefaultDataSourceFactory(getContext(),userAgent);
         MediaSource mediaSource = new ExtractorMediaSource.Factory(dataSourceFactory).createMediaSource(stepVideoUri);
         player.prepare(mediaSource);
         player.setPlayWhenReady(false);
+    }
+
+    public PlayerView setHeight(PlayerView view){
+
+        LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) view.getLayoutParams();
+        if(getActivity().getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE &&
+                Support.getDisplayType(getActivity()) != Support.DisplayType.TABLET)
+            lp.height = (int)(Support.getDisplayHeight(getActivity()) * 0.80);
+        else
+            lp.height = Support.convertDpToPixels(getActivity(), 300);
+        view.setLayoutParams(lp);
+        return view;
+
     }
 }

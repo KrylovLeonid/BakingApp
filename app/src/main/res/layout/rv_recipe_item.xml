@@ -7,7 +7,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="@dimen/list_text_size"
-        style="@style/list_item_style"
+        style="@style/list_buttons_style"
         />
 
 </LinearLayout>

@@ -25,7 +25,7 @@ public class RecipesAdapter extends RecyclerView.Adapter<RecipesAdapter.RecipesV
     }
 
     public interface ItemClickListener{
-        void onClick(int id);
+        void onClick(int recipeId);
     }
 
 
@@ -57,7 +57,7 @@ public class RecipesAdapter extends RecyclerView.Adapter<RecipesAdapter.RecipesV
     @Override
     public void onBindViewHolder(@NonNull RecipesAdapter.RecipesViewHolder recipesViewHolder, int i) {
         recipesViewHolder.recipeNameTV.setText(mModel.getRecipes().getValue().get(i).getName());
-        //Picasso.get().load(mModel.getRecipes().getValue().get(i).getImage()).into(recipesViewHolder.recipeThumbnailIV);
+
     }
 
     @Override

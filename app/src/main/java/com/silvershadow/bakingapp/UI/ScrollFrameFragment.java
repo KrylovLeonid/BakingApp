@@ -19,7 +19,9 @@ import com.silvershadow.bakingapp.ViewModel.RecipesViewModel;
 
 public class ScrollFrameFragment extends Fragment {
     RecipesViewModel mModel;
-    int mRecipeId;
+    int currentRecipeId;
+    int currentStepId;
+
     ViewPager mPager;
     public ScrollFrameFragment(){}
 
@@ -27,7 +29,8 @@ public class ScrollFrameFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mModel = ViewModelProviders.of(getActivity()).get(RecipesViewModel.class);
-        mRecipeId = getArguments().getInt(Support.STEP_ID_STRING);
+        currentRecipeId = getArguments().getInt(Support.RECIPE_ID_STRING);
+        currentStepId = getArguments().getInt(Support.STEP_ID_STRING);
     }
 
     @Nullable
@@ -35,8 +38,9 @@ public class ScrollFrameFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.steps_view_pager, container, false);
         mPager = view.findViewById(R.id.steps_view_pager);
-        PagerAdapter pagerAdapter = new StepsViewPagerAdapter(getFragmentManager(), mModel, mRecipeId);
+        PagerAdapter pagerAdapter = new StepsViewPagerAdapter(getFragmentManager(), mModel, currentRecipeId);
         mPager.setAdapter(pagerAdapter);
+        mPager.setCurrentItem(currentStepId);
         return view;
     }
 }

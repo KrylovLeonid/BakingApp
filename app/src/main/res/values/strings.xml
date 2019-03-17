@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">BakingApp</string>
     <string name="ingredients_button_text">Show ingredients list</string>
+    <string name="swipe_hint_text">Swipe to choose step</string>
+    <string name="of">of</string>
+    <string name="ingredients_title">Ingredients: </string>
+    <string name="error_message">Sorry application can not receive data. Please check internet connection and restart the app</string>
 </resources>

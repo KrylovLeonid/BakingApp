@@ -17,7 +17,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RecipesViewModel extends AndroidViewModel {
 
-    private BackingData backingData;
     MutableLiveData<List<Recipe>> recipes = new MutableLiveData<List<Recipe>>();
 
     public RecipesViewModel(@NonNull Application application) {
