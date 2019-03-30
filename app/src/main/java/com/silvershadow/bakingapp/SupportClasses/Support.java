@@ -16,6 +16,8 @@ public class Support {
     public static final String STEP_ID_STRING = "step_id";
     public static final String MAIN_FRAGMENT_SAVE_TAG= "main fragment";
     private static final float MAX_PHONE_WIDTH_IN_INCHES = 4;
+    public static final String RECIPE_SERVICE_INTENT = "recipe service intent";
+    public static final String WIDGET_INGREDIENTS_BUNDLE = "widget ingredients bundle";
     //public static final String INGREDIENTS_BUTTON_STATE = "ingredients button";
 
 

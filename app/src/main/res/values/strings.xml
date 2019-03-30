@@ -5,4 +5,6 @@
     <string name="of">of</string>
     <string name="ingredients_title">Ingredients: </string>
     <string name="error_message">Sorry application can not receive data. Please check internet connection and restart the app</string>
+    <string name="appwidget_text">EXAMPLE</string>
+    <string name="add_widget">Add widget</string>
 </resources>

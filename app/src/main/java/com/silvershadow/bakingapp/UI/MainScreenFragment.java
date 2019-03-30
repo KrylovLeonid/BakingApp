@@ -1,10 +1,12 @@
 package com.silvershadow.bakingapp.UI;
 
+import android.appwidget.AppWidgetManager;
 import android.arch.lifecycle.Observer;
 
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.ComponentName;
 import android.content.Context;
-import android.net.ConnectivityManager;
+
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -16,15 +18,21 @@ import android.view.View;
 import android.view.ViewGroup;
 
 
+
 import com.silvershadow.bakingapp.Adapters.RecipesAdapter;
+import com.silvershadow.bakingapp.Entities.Ingredient;
 import com.silvershadow.bakingapp.Entities.Recipe;
 import com.silvershadow.bakingapp.R;
+import com.silvershadow.bakingapp.RecipesWidget;
+import com.silvershadow.bakingapp.Services.RecipeWidgetService;
 import com.silvershadow.bakingapp.SupportClasses.Support;
 import com.silvershadow.bakingapp.ViewModel.RecipesViewModel;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MainScreenFragment extends Fragment {
+
 
     interface OnRecipeClick{
         void onRecipeClick(int recipeId);
@@ -73,6 +81,7 @@ public class MainScreenFragment extends Fragment {
             @Override
             public void onClick(int id) {
                 selectedRecipe = id;
+                updateWidgetData();
                 if(currentDisplayType == Support.DisplayType.TABLET)
                     mCallback.onRecipeClick(id);
                 else
@@ -98,6 +107,25 @@ public class MainScreenFragment extends Fragment {
         bundle.putInt(Support.RECIPE_ID_STRING,id);
         fragment.setArguments(bundle);
         getFragmentManager().beginTransaction().replace(R.id.main_fragment_container,fragment).addToBackStack(null).commit();
+    }
+
+    private void updateWidgetData(){
+        ComponentName widget = new ComponentName(getContext(), RecipesWidget.class);
+        AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(getContext());
+        int[] ids = appWidgetManager.getAppWidgetIds(widget);
+        appWidgetManager.notifyAppWidgetViewDataChanged(ids, R.id.widget_recipes_lv);
+
+
+
+
+    }
+
+    private ArrayList<String> createIngredientsList(int recipeId){
+        ArrayList <String> result = new ArrayList<>();
+        for(Ingredient ing : mModel.getRecipes().getValue().get(recipeId).getIngredients()){
+            result.add(String.valueOf(ing.getQuantity()) + " " + ing.getMeasure() + " of " + ing.getIngredient());
+        }
+    return result;
     }
 
 }

@@ -1,6 +1,9 @@
 package com.silvershadow.bakingapp.UI;
+import android.appwidget.AppWidgetManager;
 import android.arch.lifecycle.ReportFragment;
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -15,6 +18,7 @@ import android.widget.LinearLayout;
 
 import com.silvershadow.bakingapp.R;
 import com.silvershadow.bakingapp.SupportClasses.Support;
+import com.silvershadow.bakingapp.ViewModel.RecipesViewModel;
 
 
 public class MainActivity extends AppCompatActivity implements  MainScreenFragment.OnRecipeClick,
@@ -32,6 +36,10 @@ public class MainActivity extends AppCompatActivity implements  MainScreenFragme
             setContentView(R.layout.error_layout);
             return;
         }
+
+
+
+
 
         setContentView(R.layout.activity_main);
         MainScreenFragment mainScreenFragment;
